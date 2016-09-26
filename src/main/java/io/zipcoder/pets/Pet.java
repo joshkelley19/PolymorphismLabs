@@ -4,11 +4,10 @@ package io.zipcoder.pets;
  * Created by joshuakelley on 9/26/16.
  */
 public class Pet {
-    String name;
-    String type;
+    public String name;
 
-    public Pet(String type,String name){
-        this.type=type;this.name=name;
+    public Pet(String name){
+        this.name=name;
     }
 
     public Pet(){
@@ -23,11 +22,11 @@ public class Pet {
         return name;
     }
 
-    public void speak(){
-        System.out.println("Speaking...");
+    public String speak(){
+        return "Generic Animal Noise...";
     }
 
     public String toString(){
-        return "My "+type+"'s name is "+name;
+        return name+" says "+speak();
     }
 }

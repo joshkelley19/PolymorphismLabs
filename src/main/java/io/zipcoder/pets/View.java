@@ -12,9 +12,7 @@ public class View {
 
     public static void main(String[] args) {
         Engine engine = new Engine();
-        do {
-            engine.requestPet();
-        }while (engine.checkForAnotherPet());
+        engine.getPets();
         engine.printAll();
     }
 }

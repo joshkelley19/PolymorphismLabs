@@ -8,34 +8,36 @@ import java.util.Scanner;
  * Created by joshuakelley on 9/26/16.
  */
 public class Engine {
-    ArrayList<Pet> pets = new ArrayList<>();
+    public ArrayList<Pet> pets = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
 
-    public void requestPet(){
-        String type;
-        String name;
-        char another;
-        System.out.println("What kind of pet do you have?");
-        type = scan.next();
-        System.out.println("What is his/her name?");
-        name = scan.next();
-        addPet(type,name);
-    }
-    public boolean checkForAnotherPet(){
-        do{
-            System.out.println("Do you have another pet? Enter Y or N");
-            switch (scan.next().toUpperCase().charAt(0)){
-                case 'Y':return true;
-                case 'N':return false;
-                default:
-                    System.out.println("I did not understand that entry.");
-            }
-        }while (true);
+    public void getPets(){
+        int petCount;
+        System.out.println("How many pets do you have?");
+        petCount=scan.nextInt();
+        for (int i=0;i<petCount;i++){
+            String name;
+            String type;
+            System.out.println("What is the name of pet #"+(i+1)+"?");
+            name=scan.next();
+            System.out.println("What kind of animal is pet #"+(i+1)+"?");
+            type=scan.next();
+            addPet(type,name);
+        }
 
     }
+
 
     public void addPet(String type, String name){
-        pets.add(new Pet(type,name));
+        Pet pet;
+        switch (type.toUpperCase()){
+            case "DOG":pet=new Dog(name);break;
+            case "CAT":pet=new Cat(name);break;
+            case "HAMSTER":pet=new Hamster(name);break;
+            case "SNAKE":pet=new Snake(name);break;
+            default:pet=new Pet(name);break;
+        }
+        pets.add(pet);
     }
 
     public void printAll(){
@@ -44,6 +46,7 @@ public class Engine {
 
     public void everybodyNow(){
         for (Pet p : pets){
+            System.out.println(p.toString());
             if(p instanceof Dog){
                 ((Dog)p).speak();
             }
